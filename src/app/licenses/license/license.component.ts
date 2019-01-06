@@ -37,7 +37,6 @@ export class LicenseComponent implements OnInit {
   browse(query: PageQuery) {
     this.licenseService.browse(query).subscribe(page => {
       this.licenses = page;
-      console.log(page);
       this.dataSource = new MatTableDataSource<License>(this.licenses.items);
     });
   }

@@ -70,7 +70,6 @@ export class LoginPageComponent implements OnInit {
       this.model.email = this.loginForm.get('email').value;
       this.model.password = this.loginForm.get('password').value;
       this.identityService.signIn(this.model).subscribe(token => {
-        console.log(token);
         const isSessionStored = !this.model.rememberMe;
         this.authService.setAccessToken(token.accessToken, isSessionStored);
         this.router.navigate(['/']);
