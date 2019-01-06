@@ -1,0 +1,14 @@
+table {
+
+  width: 100%;
+}
+
+td {
+  white-space: -moz-pre-wrap !important; /* Mozilla, since 1999 */
+  white-space: -o-pre-wrap; /* Opera 7 */
+  white-space: pre-wrap; /* css-3 */
+  word-wrap: break-word; /* Internet Explorer 5.5+ */
+  word-break: break-all;
+  white-space: normal;
+  padding-right: 10px !important;
+}

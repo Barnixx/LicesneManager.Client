@@ -1,0 +1,45 @@
+<div fxLayout="column" fxLayoutAlign="space-around center" class="p-5">
+  <div fxFill class="mat-elevation-z8">
+    <table mat-table [dataSource]="dataSource">
+      <ng-container matColumnDef="ID">
+        <th mat-header-cell *matHeaderCellDef> ID</th>
+        <td mat-cell *matCellDef="let element">{{element.id}}</td>
+      </ng-container>
+      <ng-container matColumnDef="IP">
+        <th mat-header-cell *matHeaderCellDef> IP</th>
+        <td mat-cell *matCellDef="let element"> {{element.ip}} </td>
+      </ng-container>
+      <ng-container matColumnDef="HWID">
+        <th mat-header-cell *matHeaderCellDef> HWID</th>
+        <td mat-cell *matCellDef="let element"> {{element.hwid}} </td>
+      </ng-container>
+      <ng-container matColumnDef="KEY">
+        <th mat-header-cell *matHeaderCellDef> KEY</th>
+        <td mat-cell *matCellDef="let element"> {{element.key}} </td>
+      </ng-container>
+      <ng-container matColumnDef="Created">
+        <th mat-header-cell *matHeaderCellDef> Created At</th>
+        <td mat-cell *matCellDef="let element"> {{element.createdAt| date: 'full' : 'GMT'}} </td>
+      </ng-container>
+      <ng-container matColumnDef="Modify">
+        <th mat-header-cell *matHeaderCellDef> Modify Date</th>
+        <td mat-cell *matCellDef="let element"> {{element.modifyDate | date: 'short'}} </td>
+      </ng-container>
+      <ng-container matColumnDef="Status">
+        <th mat-header-cell *matHeaderCellDef> Status</th>
+        <td mat-cell *matCellDef="let element"> {{element.status}} </td>
+      </ng-container>
+
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+
+    </table>
+    <mat-paginator [pageSizeOptions]="[5, 10, 20]"
+                   [length]="licenses.totalResults"
+                   [pageSize]="licenses.resultsPerPage"
+                   (page)="pageEvent = startEvent($event)"
+                   showFirstLastButtons></mat-paginator>
+  </div>
+  <button (click)="test()">Test</button>
+</div>
+
