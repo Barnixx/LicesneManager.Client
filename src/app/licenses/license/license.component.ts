@@ -22,7 +22,6 @@ export class LicenseComponent implements OnInit {
   query$: Subject<PageQuery>;
   licenses: PagedResult<License>;
   dataSource: MatTableDataSource<License>;
-  pageEvent: PageEvent;
 
   @ViewChild(OverlayRef) overlayRef: OverlayRef;
 
@@ -51,7 +50,6 @@ export class LicenseComponent implements OnInit {
   }
 
   startEvent(event?: PageEvent) {
-    console.log(event);
     this.query = new class implements PageQuery {
       page = event.pageIndex + 1;
       results = event.pageSize;

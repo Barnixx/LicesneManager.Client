@@ -3,6 +3,7 @@ import {MAT_DIALOG_DATA, MatDialogRef} from '@angular/material';
 import {License} from '../../shared/models/license';
 import {LicenseComponent} from '../license/license.component';
 import {LicenseService} from '../shared/license.service';
+import {Router} from '@angular/router';
 
 interface LicenseDialogData {
   license: License;
@@ -19,7 +20,8 @@ export class AddLicenseComponent implements OnInit {
   showSpinner = false;
 
   constructor(private dialogRef: MatDialogRef<LicenseComponent>,
-              private licenseService: LicenseService, @Inject(MAT_DIALOG_DATA) public data: LicenseDialogData) {
+              private licenseService: LicenseService, @Inject(MAT_DIALOG_DATA) public data: LicenseDialogData,
+              private router: Router) {
     console.log('in dialog', data);
   }
 
@@ -32,9 +34,10 @@ export class AddLicenseComponent implements OnInit {
       this.dialogRef.close(true);
       this.showSpinner = false;
     }, error => {
-      console.log(error);
+      if (error.status === 404) {
+        this.router.navigate(['sign-in']);
+      }
     });
-    console.log('data to send', this.data.license);
   }
 
 }

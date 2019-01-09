@@ -37,20 +37,6 @@ export class LoginPageComponent implements OnInit, AfterViewInit {
     });
   }
 
-  // onSubmit() {
-  //   if (this.loginForm.valid) {
-  //     this.model.email = this.loginForm.get('email').value;
-  //     this.model.password = this.loginForm.get('password').value;
-  //     this.identityService.signIn(this.model).subscribe(post =>
-  //         console.log(post),
-  //       error => {
-  //         console.log(error.error);
-  //         if (error.error.code === 'invalid_credentials') {
-  //           this.credentialsError = true;
-  //         }
-  //       });
-  //   }
-  // }
   getErrorMessage() {
     return this.email.hasError('required') ? 'Email is <strong>required</strong>' :
       this.email.hasError('email') ? 'Please enter a valid email address' :

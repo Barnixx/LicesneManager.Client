@@ -41,7 +41,7 @@
     <mat-paginator [pageSizeOptions]="[5, 10, 20]"
                    [length]="licenses.totalResults"
                    [pageSize]="licenses.resultsPerPage"
-                   (page)="pageEvent = startEvent($event)"
+                   (page)="startEvent($event)"
                    showFirstLastButtons></mat-paginator>
   </div>
 </div>
