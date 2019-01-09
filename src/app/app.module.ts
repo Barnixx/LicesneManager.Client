@@ -17,7 +17,10 @@ import {ROUTES} from './app.routes';
 import {LicenseComponent} from './licenses/license/license.component';
 import {IdentityService} from './users/shared/identity/identity.service';
 import {LicenseService} from './licenses/shared/license.service';
+import {AddLicenseComponent} from './licenses/add-license/add-license.component';
 
+
+// registerLocaleData(localePl, 'pl');
 export function tokenGetter() {
   if (localStorage.getItem('access_token')) {
     return localStorage.getItem('access_token');
@@ -27,12 +30,15 @@ export function tokenGetter() {
   }
   return null;
 }
-
 @NgModule({
   declarations: [
     AppComponent,
     HomePageComponent,
-    LicenseComponent
+    LicenseComponent,
+    AddLicenseComponent
+  ],
+  entryComponents: [
+    AddLicenseComponent
   ],
   imports: [
     BrowserModule,
@@ -52,6 +58,7 @@ export function tokenGetter() {
     UsersModule
   ],
   providers: [
+    // { provide: LOCALE_ID, useValue: 'pl' },
     ConfigService,
     AuthService,
     IdentityService,

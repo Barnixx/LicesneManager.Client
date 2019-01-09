@@ -3,10 +3,12 @@ import {
   MatButtonModule,
   MatCardModule,
   MatCheckboxModule,
+  MatDialogModule,
   MatFormFieldModule,
   MatIconModule,
   MatInputModule,
   MatPaginatorModule,
+  MatProgressSpinnerModule,
   MatTableModule
 } from '@angular/material';
 
@@ -18,7 +20,9 @@ import {
     MatCardModule,
     MatButtonModule,
     MatTableModule,
-    MatPaginatorModule
+    MatPaginatorModule,
+    MatDialogModule,
+    MatProgressSpinnerModule
 
   ],
   exports: [
@@ -29,7 +33,9 @@ import {
     MatButtonModule,
     MatCheckboxModule,
     MatTableModule,
-    MatPaginatorModule
+    MatPaginatorModule,
+    MatDialogModule,
+    MatProgressSpinnerModule
   ]
 })
 export class CustomMaterialModule {

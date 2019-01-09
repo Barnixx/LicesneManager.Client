@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {AfterViewInit, Component, OnInit} from '@angular/core';
 import {IdentityService} from '../shared/identity/identity.service';
 import {FormControl, FormGroup, Validators} from '@angular/forms';
 import {AuthService} from '../../shared/services/auth/auth.service';
@@ -10,7 +10,7 @@ import {SignInModel} from '../shared/sign-in.model';
   templateUrl: './login-page.component.html',
   styleUrls: ['./login-page.component.css']
 })
-export class LoginPageComponent implements OnInit {
+export class LoginPageComponent implements OnInit, AfterViewInit {
 
   hide = true;
   model: SignInModel;
@@ -73,9 +73,15 @@ export class LoginPageComponent implements OnInit {
         const isSessionStored = !this.model.rememberMe;
         this.authService.setAccessToken(token.accessToken, isSessionStored);
         this.router.navigate(['/']);
-      }, () => {
-        this.credentialsError = true;
+      }, (error) => {
+        if (error.error.code === 'invalid_credentials') {
+          this.credentialsError = true;
+        }
       });
     }
+  }
+
+  ngAfterViewInit(): void {
+
   }
 }

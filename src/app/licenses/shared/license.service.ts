@@ -19,4 +19,8 @@ export class LicenseService extends BaseApiService {
   browse(query): Observable<PagedResult<License>> {
     return super.pagedResult<License>(License, 'license', query, true);
   }
+
+  update(license: License) {
+    return super.put<License>('license', license, true);
+  }
 }

@@ -3,7 +3,7 @@ import {AuthService} from './auth/auth.service';
 import {ConfigService} from './config/config.service';
 import {Config} from './config/config';
 import {Observable, throwError} from 'rxjs';
-import {catchError, map} from 'rxjs/operators';
+import {map} from 'rxjs/operators';
 import {PagedResult} from '../models/paged-result';
 
 const httpOptions = {
@@ -53,7 +53,7 @@ export abstract class BaseApiService {
 
   protected put<TData>(url: string, data: any, isProtected: boolean = false): Observable<TData> {
     return this
-      .request<TData>('GET', url, data, null, isProtected)
+      .request<TData>('PUT', url, data, null, isProtected)
       .pipe(map(response => response.body));
   }
 
@@ -72,8 +72,8 @@ export abstract class BaseApiService {
 
     options.body = data;
     options.params = params;
-    return this.http.request<HttpResponse<TData>>(method, `${this.config.apiUrl}/${url}`, options)
-      .pipe(catchError(this.handleError));
+    return this.http.request<HttpResponse<TData>>(method, `${this.config.apiUrl}/${url}`, options);
+    // .pipe(catchError(this.handleError));
   }
 
   private handleError(error: HttpErrorResponse) {
@@ -85,7 +85,7 @@ export abstract class BaseApiService {
       // The response body may contain clues as to what went wrong,
       console.error(
         `Backend returned code ${error.status}, ` +
-        `body was: ${error.error.code}`);
+        `body was: ${error.message}`);
     }
     // return an observable with a user-facing error message
     return throwError(
