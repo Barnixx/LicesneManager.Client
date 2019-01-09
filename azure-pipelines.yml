@@ -24,6 +24,6 @@ steps:
 - task: PublishBuildArtifacts@1
   displayName: 'Publish Artifact: dist'
   inputs:
-    PathtoPublish: dist
+    PathtoPublish: dist/LicenseManager-Client
 
     ArtifactName: dist
