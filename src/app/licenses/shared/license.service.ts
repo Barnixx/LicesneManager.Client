@@ -20,6 +20,10 @@ export class LicenseService extends BaseApiService {
     return super.pagedResult<License>(License, 'license', query, true);
   }
 
+  create(license: License) {
+    return super.post('license', license, true);
+  }
+
   update(license: License) {
     return super.put<License>('license', license, true);
   }

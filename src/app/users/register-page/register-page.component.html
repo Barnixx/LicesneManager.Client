@@ -1,3 +1,49 @@
-<p>
-  register-page works!
-</p>
+<div fxFill fxLayout="row" fxLayoutAlign="center" class="login-form p-5">
+  <div fxFlex="35"></div>
+  <div fxFlex fxLayout="column" fxLayoutAlign="center stretch">
+    <div fxFlex>
+      <mat-card>
+        <mat-card-header>
+          <mat-card-title>
+            Sign Up
+          </mat-card-title>
+        </mat-card-header>
+        <mat-card-content>
+          <div id="invalid_form" *ngIf="credentialsError">
+            <mat-error>Email or password was invalid</mat-error>
+          </div>
+          <form (ngSubmit)="onSubmit()" [formGroup]="loginForm" #formDir="ngForm" class="p-1">
+            <div fxLayout="column" fxLayoutAlign="space-around center" fxLayoutGap="10px">
+              <mat-form-field fxFill>
+                <mat-label>Email</mat-label>
+                <input matInput formControlName="email" placeholder="Email" name="email">
+                <mat-hint>Enter email address</mat-hint>
+                <mat-error [innerHTML]=""></mat-error>
+              </mat-form-field>
+              <mat-form-field fxFill>
+                <mat-label>Password</mat-label>
+                <input matInput formControlName="password" [type]="hide ? 'password' : 'text'"
+                       placeholder="Insert Password">
+                <mat-icon matSuffix (click)="hide = !hide">{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+                <mat-hint>Enter password</mat-hint>
+                <mat-error>
+                  Password is <strong>required</strong>
+                </mat-error>
+              </mat-form-field>
+
+            </div>
+            <div fxLayout="row" fxLayoutAlign="start center">
+              <div>
+                <button type="submit" mat-raised-button color="primary" id="sign-in-button">Sign Up</button>
+                <a routerLink="/sign-in" class="p-2">Back to login</a>
+              </div>
+            </div>
+          </form>
+        </mat-card-content>
+      </mat-card>
+    </div>
+    <div fxFlex>
+    </div>
+  </div>
+  <div fxFlex="35"></div>
+</div>

@@ -30,14 +30,25 @@ export class AddLicenseComponent implements OnInit {
 
   submit() {
     this.showSpinner = true;
-    this.licenseService.update(this.data.license).subscribe(() => {
-      this.dialogRef.close(true);
-      this.showSpinner = false;
-    }, error => {
-      if (error.status === 404) {
-        this.router.navigate(['sign-in']);
-      }
-    });
+    if (this.data.edit) {
+      this.licenseService.update(this.data.license).subscribe(() => {
+        this.dialogRef.close(true);
+        this.showSpinner = false;
+      }, error => {
+        if (error.status === 404) {
+          this.router.navigate(['sign-in']);
+        }
+      });
+    } else {
+      console.log(this.data.license);
+      this.licenseService.create(this.data.license).subscribe(() => {
+        this.dialogRef.close(true);
+        console.log(this.data.license);
+      }, error => {
+        if (error.status === 404) {
+          this.router.navigate(['sign-in']);
+        }
+      });
+    }
   }
-
 }

@@ -6,6 +6,7 @@ import {CustomMaterialModule} from '../custom-material.module';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {FlexLayoutModule} from '@angular/flex-layout';
 import {RegisterPageComponent} from './register-page/register-page.component';
+import {RouterModule} from '@angular/router';
 
 @NgModule({
   declarations: [LoginPageComponent, RegisterPageComponent],
@@ -15,6 +16,7 @@ import {RegisterPageComponent} from './register-page/register-page.component';
     CustomMaterialModule,
     FormsModule,
     ReactiveFormsModule,
+    RouterModule
   ],
   providers: [
     IdentityService

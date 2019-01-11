@@ -65,11 +65,11 @@ export class LicenseComponent implements OnInit {
     });
   }
 
-  editDialog(license: License) {
+  showDialog(edit: boolean, license?: License) {
     const dialogRef = this.dialog.open(AddLicenseComponent, {
       data: {
-        license: Object.assign(new License(), license),
-        edit: true,
+        license: Object.assign(new License(), license === null ? new License() : license),
+        edit: edit,
       },
       hasBackdrop: true,
       disableClose: true

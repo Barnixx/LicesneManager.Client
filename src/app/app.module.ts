@@ -35,7 +35,7 @@ export function tokenGetter() {
     AppComponent,
     HomePageComponent,
     LicenseComponent,
-    AddLicenseComponent
+    AddLicenseComponent,
   ],
   entryComponents: [
     AddLicenseComponent
@@ -43,7 +43,9 @@ export function tokenGetter() {
   imports: [
     BrowserModule,
     HttpClientModule,
-    RouterModule.forRoot(ROUTES),
+    RouterModule.forRoot(ROUTES, {
+      enableTracing: true
+    }),
     JwtModule.forRoot({
       config: {
         tokenGetter: tokenGetter,

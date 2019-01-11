@@ -1,0 +1,21 @@
+.header {
+  padding: 80px;
+  text-align: center;
+  background: rgba(8, 8, 8, 0.36);
+  color: white;
+  font-size: 30px;
+}
+
+.toolbar-spacer {
+  flex: 1 1 auto;
+}
+
+.toolbar {
+  background-color: rgb(114, 103, 85);
+  color: white;
+}
+
+.verify-icon {
+  color: #99ff11;
+  font-size: 1.4em;
+}

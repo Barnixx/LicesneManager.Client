@@ -3,6 +3,7 @@
 
 html, body {
   height: 100%;
+  background-color: rgba(232, 221, 172, 0.55) !important;
 }
 
 body {
