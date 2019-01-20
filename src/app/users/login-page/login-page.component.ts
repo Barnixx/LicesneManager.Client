@@ -12,6 +12,7 @@ import {SignInModel} from '../shared/sign-in.model';
 })
 export class LoginPageComponent implements OnInit, AfterViewInit {
 
+  showSpinner = false;
   hide = true;
   model: SignInModel;
   loginForm: FormGroup;
@@ -53,6 +54,7 @@ export class LoginPageComponent implements OnInit, AfterViewInit {
 
   onSubmit() {
     if (this.loginForm.valid) {
+      this.showSpinner = true;
       this.model.email = this.loginForm.get('email').value;
       this.model.password = this.loginForm.get('password').value;
       this.identityService.signIn(this.model).subscribe(token => {
@@ -62,6 +64,7 @@ export class LoginPageComponent implements OnInit, AfterViewInit {
       }, (error) => {
         if (error.error.code === 'invalid_credentials') {
           this.credentialsError = true;
+          this.showSpinner = false;
         }
       });
     }

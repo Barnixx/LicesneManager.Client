@@ -2,11 +2,9 @@
   <mat-spinner></mat-spinner>
 </div>
 
-<div fxLayout="column" fxLayoutAlign="space-around center" class="p-5">
-  <div fxLayout="row" fxLayoutAlign="space-around center">
-    <div fxFlex>
-      <button fxFill mat-flat-button (click)="showDialog(false)" color="primary">Add New</button>
-    </div>
+<div fxLayout="column" fxLayoutAlign="space-around center">
+  <div fxFill>
+    <button fxFill mat-flat-button (click)="showDialog(false)" id="add_button">Add New</button>
   </div>
   <div fxFlexFill class="mat-elevation-z8">
     <mat-table [dataSource]="dataSource">

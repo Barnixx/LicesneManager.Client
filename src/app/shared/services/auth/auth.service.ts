@@ -17,7 +17,7 @@ export class AuthService {
     this.isUserLogged$.next(!!this.storage.getItem(jwtTokenKey));
   }
 
-  private get storage() {
+  public get storage() {
     return this.isSessionStored ? window.sessionStorage : window.localStorage;
   }
 

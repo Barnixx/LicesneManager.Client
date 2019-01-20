@@ -43,7 +43,7 @@
     display: block;
     font-size: 1em;
     text-align: right;
-    font-weight: bold;
+    /*font-weight: bold;*/
     padding: 2%;
   }
 
@@ -56,7 +56,7 @@
     float: left;
     text-transform: uppercase;
     font-weight: normal;
-
+    padding-right: 2em;
     font-size: .85em;
   }
 
@@ -84,14 +84,10 @@ mat-header-cell, mat-cell {
 }
 
 mat-cell {
-  white-space: -moz-pre-wrap !important; /* Mozilla, since 1999 */
-  white-space: -o-pre-wrap; /* Opera 7 */
-  white-space: pre-wrap; /* css-3 */
-  word-wrap: break-word; /* Internet Explorer 5.5+ */
-  word-break: break-all;
-  white-space: normal;
+  white-space: nowrap;
   transition: 0.4s;
   cursor: pointer;
+  width: auto;
 }
 
 
@@ -118,4 +114,15 @@ mat-cell {
   width: 6rem;
   height: 6rem;
 
+}
+
+
+#add_button {
+  background: #2925b9;
+  color: white;
+  width: 100%;
+  height: 8vh !important;
+  border-bottom-right-radius: 0;
+  border-bottom-left-radius: 0;
+  font-size: 1em;
 }

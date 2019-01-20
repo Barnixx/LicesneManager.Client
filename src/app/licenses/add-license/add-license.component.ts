@@ -18,7 +18,6 @@ interface LicenseDialogData {
 export class AddLicenseComponent implements OnInit {
 
   showSpinner = false;
-
   constructor(private dialogRef: MatDialogRef<LicenseComponent>,
               private licenseService: LicenseService, @Inject(MAT_DIALOG_DATA) public data: LicenseDialogData,
               private router: Router) {

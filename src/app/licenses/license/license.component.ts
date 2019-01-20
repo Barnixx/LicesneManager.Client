@@ -11,13 +11,12 @@ import {OverlayRef} from '@angular/cdk/overlay';
 @Component({
   selector: 'app-license',
   templateUrl: './license.component.html',
-  styleUrls: ['./license.component.css']
+  styleUrls: ['./license.component.css'],
 })
 export class LicenseComponent implements OnInit {
 
   showSpinner = true;
   displayedColumns: string[] = ['ID', 'IP', 'HWID', 'KEY', 'Created', 'Modify', 'Status'];
-
   query: PageQuery;
   query$: Subject<PageQuery>;
   licenses: PagedResult<License>;

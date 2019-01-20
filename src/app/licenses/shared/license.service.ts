@@ -2,7 +2,6 @@ import {Injectable} from '@angular/core';
 import {BaseApiService} from '../../shared/services/base-api.service';
 import {HttpClient} from '@angular/common/http';
 import {AuthService} from '../../shared/services/auth/auth.service';
-import {ConfigService} from '../../shared/services/config/config.service';
 import {Observable} from 'rxjs';
 import {PagedResult} from '../../shared/models/paged-result';
 import {License} from '../../shared/models/license';
@@ -12,8 +11,8 @@ import {License} from '../../shared/models/license';
 })
 export class LicenseService extends BaseApiService {
 
-  constructor(configService: ConfigService, http: HttpClient, authService: AuthService) {
-    super(configService, http, authService);
+  constructor(http: HttpClient, authService: AuthService) {
+    super(http, authService);
   }
 
   browse(query): Observable<PagedResult<License>> {

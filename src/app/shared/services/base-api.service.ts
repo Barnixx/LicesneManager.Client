@@ -1,14 +1,13 @@
 import {HttpClient, HttpErrorResponse, HttpHeaders, HttpResponse} from '@angular/common/http';
 import {AuthService} from './auth/auth.service';
-import {ConfigService} from './config/config.service';
-import {Config} from './config/config';
 import {Observable, throwError} from 'rxjs';
 import {map} from 'rxjs/operators';
 import {PagedResult} from '../models/paged-result';
+import {environment} from '../../../environments/environment';
 
 const httpOptions = {
   headers: new HttpHeaders({
-    'Content-Type': 'application/json'
+    'Content-Type': 'application/json',
   }),
   body: {},
   observe: 'response' as 'body',
@@ -17,21 +16,24 @@ const httpOptions = {
 
 export abstract class BaseApiService {
 
-  protected config: Config;
+  protected apiURL = environment.apiUrl;
 
-  protected constructor(private configService: ConfigService, private http: HttpClient, private authService: AuthService) {
-    this.config = configService.getConfig();
+  protected constructor(private http: HttpClient, private authService: AuthService) {
   }
 
   protected get<TData>(url: string, params?: any, isProteted: boolean = false): Observable<TData> {
     return this.request<TData>('GET', url, null, params, isProteted)
-      .pipe(map(response => response.body));
+      .pipe(map(response => {
+        console.log(response);
+        return response.body;
+      }));
   }
 
   protected pagedResult<TData extends Object>(type: (new () => TData), url: string, params?: any, isProtected: boolean = false)
     : Observable<PagedResult<TData>> {
     return this.request<PagedResult<TData>>('GET', url, null, params, isProtected)
       .pipe(map(response => {
+        console.log(response);
         const result = new PagedResult<TData>();
         const items: Array<TData> = [];
         // for (let i = 0; i < response.body.items.length; i++) {
@@ -48,7 +50,10 @@ export abstract class BaseApiService {
 
   protected post<TData>(url: string, data: any, isProtected: boolean = false): Observable<TData> {
     return this.request<TData>('POST', url, data, null, isProtected)
-      .pipe(map(response => response.body));
+      .pipe(map(response => {
+        console.log(response);
+        return response.body;
+      }));
   }
 
   protected put<TData>(url: string, data: any, isProtected: boolean = false): Observable<TData> {
@@ -69,11 +74,10 @@ export abstract class BaseApiService {
       const token = this.authService.getAccessToken();
       options.headers = httpOptions.headers.append('Authorization', 'Bearer ' + token);
     }
-
+    console.log(document.cookie.search('XSRF-TOKEN'));
     options.body = data;
     options.params = params;
-    return this.http.request<HttpResponse<TData>>(method, `${this.config.apiUrl}/${url}`, options);
-    // .pipe(catchError(this.handleError));
+    return this.http.request<HttpResponse<TData>>(method, `${this.apiURL}/${url}`, options);
   }
 
   private handleError(error: HttpErrorResponse) {

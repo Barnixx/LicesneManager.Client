@@ -1,7 +1,6 @@
 import {Injectable} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import {Observable} from 'rxjs';
-import {ConfigService} from '../../../shared/services/config/config.service';
 import {BaseApiService} from '../../../shared/services/base-api.service';
 import {AuthService} from '../../../shared/services/auth/auth.service';
 import {JwtModel} from '../jwt.model';
@@ -14,8 +13,8 @@ import {SignUpModel} from '../sign-up.model';
 })
 export class IdentityService extends BaseApiService {
 
-  constructor(configService: ConfigService, http: HttpClient, authService: AuthService) {
-    super(configService, http, authService);
+  constructor(http: HttpClient, authService: AuthService) {
+    super(http, authService);
   }
 
   signUp(model: SignUpModel): Observable<any> {

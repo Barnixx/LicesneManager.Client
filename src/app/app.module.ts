@@ -6,8 +6,7 @@ import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {HomePageComponent} from './home-page/home-page.component';
 import {CustomMaterialModule} from './custom-material.module';
 import {FlexLayoutModule} from '@angular/flex-layout';
-import {HttpClientModule} from '@angular/common/http';
-import {ConfigService} from './shared/services/config/config.service';
+import {HttpClientModule, HttpClientXsrfModule} from '@angular/common/http';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {AuthService} from './shared/services/auth/auth.service';
 import {UsersModule} from './users/users.module';
@@ -43,8 +42,11 @@ export function tokenGetter() {
   imports: [
     BrowserModule,
     HttpClientModule,
+    HttpClientXsrfModule.withOptions({
+      cookieName: 'XSRF-TOKEN',
+      headerName: 'X-XSRF-TOKEN'
+    }),
     RouterModule.forRoot(ROUTES, {
-      enableTracing: true
     }),
     JwtModule.forRoot({
       config: {
@@ -61,7 +63,6 @@ export function tokenGetter() {
   ],
   providers: [
     // { provide: LOCALE_ID, useValue: 'pl' },
-    ConfigService,
     AuthService,
     IdentityService,
     LicenseService
